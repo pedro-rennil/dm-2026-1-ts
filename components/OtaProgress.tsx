@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
+import { DarkTheme, LightTheme } from '@/constants/theme';
+
 const TOTAL_STEPS = 5;
 const STEP_INTERVAL_MS = 2500;
 
@@ -12,9 +14,7 @@ export function OtaProgress({ isDark }: OtaProgressProps) {
   const [step, setStep] = useState(1);
   const [done, setDone] = useState(false);
 
-  const textColor = isDark ? '#CBD5E1' : '#475569';
-  const doneColor = isDark ? '#4ADE80' : '#16A34A';
-  const indicatorColor = isDark ? '#60A5FA' : '#3B82F6';
+  const theme = isDark ? DarkTheme : LightTheme;
 
   useEffect(() => {
     if (done) return;
@@ -40,11 +40,11 @@ export function OtaProgress({ isDark }: OtaProgressProps) {
   return (
     <View style={styles.container}>
       {done ? (
-        <Text style={[styles.doneText, { color: doneColor }]}>Atualizações concluídas!</Text>
+        <Text style={[styles.doneText, { color: theme.success }]}>Atualizações concluídas!</Text>
       ) : (
         <>
-          <ActivityIndicator size="small" color={indicatorColor} />
-          <Text style={[styles.progressText, { color: textColor }]}>
+          <ActivityIndicator size="small" color={theme.accent} />
+          <Text style={[styles.progressText, { color: theme.textTertiary }]}>
             Aplicando atualizações OTA... ({step}/{TOTAL_STEPS})
           </Text>
         </>

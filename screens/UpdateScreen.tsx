@@ -12,33 +12,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { NewsItemCard } from '@/components/NewsItem';
 import { OtaProgress } from '@/components/OtaProgress';
+import { DarkTheme, LightTheme, type Theme } from '@/constants/theme';
 import { NEWS_LIST } from '@/data/news';
-
-const LIGHT = {
-  background: '#F8FAFC',
-  header: '#FFFFFF',
-  headerBorder: '#E2E8F0',
-  card: '#FFFFFF',
-  titleText: '#0F172A',
-  footerBackground: '#F1F5F9',
-  footerBorder: '#CBD5E1',
-  switchTrackFalse: '#CBD5E1',
-  switchTrackTrue: '#3B82F6',
-  switchThumb: '#FFFFFF',
-};
-
-const DARK = {
-  background: '#0F172A',
-  header: '#1E293B',
-  headerBorder: '#334155',
-  card: '#1E293B',
-  titleText: '#F1F5F9',
-  footerBackground: '#1E293B',
-  footerBorder: '#334155',
-  switchTrackFalse: '#475569',
-  switchTrackTrue: '#2563EB',
-  switchThumb: '#FFFFFF',
-};
 
 type UpdateScreenProps = {
   onBack: () => void;
@@ -47,7 +22,7 @@ type UpdateScreenProps = {
 export function UpdateScreen({ onBack }: UpdateScreenProps) {
   const [isDark, setIsDark] = useState(false);
 
-  const theme = isDark ? DARK : LIGHT;
+  const theme: Theme = isDark ? DarkTheme : LightTheme;
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.background }]}>
@@ -55,19 +30,19 @@ export function UpdateScreen({ onBack }: UpdateScreenProps) {
       <View
         style={[
           styles.header,
-          { backgroundColor: theme.header, borderBottomColor: theme.headerBorder },
+          { backgroundColor: theme.surface, borderBottomColor: theme.border },
         ]}
       >
         <View style={styles.headerLeft}>
-          <ActivityIndicator size="small" color={isDark ? '#60A5FA' : '#3B82F6'} />
-          <Text style={[styles.headerTitle, { color: theme.titleText }]}>
+          <ActivityIndicator size="small" color={theme.accent} />
+          <Text style={[styles.headerTitle, { color: theme.text }]}>
             Atualização em Andamento
           </Text>
         </View>
         <Switch
-          trackColor={{ false: theme.switchTrackFalse, true: theme.switchTrackTrue }}
+          trackColor={{ false: theme.switchTrackOff, true: theme.switchTrackOn }}
           thumbColor={theme.switchThumb}
-          ios_backgroundColor={theme.switchTrackFalse}
+          ios_backgroundColor={theme.switchTrackOff}
           onValueChange={setIsDark}
           value={isDark}
         />
@@ -75,7 +50,7 @@ export function UpdateScreen({ onBack }: UpdateScreenProps) {
 
       {/* News ScrollView */}
       <ScrollView
-        style={[styles.scrollView, { backgroundColor: theme.card }]}
+        style={[styles.scrollView, { backgroundColor: theme.surface }]}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
@@ -88,7 +63,7 @@ export function UpdateScreen({ onBack }: UpdateScreenProps) {
       <View
         style={[
           styles.footer,
-          { backgroundColor: theme.footerBackground, borderTopColor: theme.footerBorder },
+          { backgroundColor: theme.surfaceSecondary, borderTopColor: theme.borderSecondary },
         ]}
       >
         <OtaProgress isDark={isDark} />

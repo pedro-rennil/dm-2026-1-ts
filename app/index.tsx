@@ -1,4 +1,5 @@
 import { SectionListExample } from "@/components/SectionListExample";
+import { ProfileScreen } from "@/screens/ProfileScreen";
 import { UpdateScreen } from "@/screens/UpdateScreen";
 import { useState } from "react";
 import { Button, StyleSheet, Switch, Text, View } from "react-native";
@@ -11,10 +12,15 @@ export default function Index() {
   let MyComponent;
   const [isEnabled, setIsEnabled] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   if (showUpdate) {
     return <UpdateScreen onBack={() => setShowUpdate(false)} />;
+  }
+
+  if (showProfile) {
+    return <ProfileScreen onBack={() => setShowProfile(false)} />;
   }
 
   if (isEnabled) {
@@ -36,6 +42,10 @@ export default function Index() {
         <Button
           title="Ver Atualização em Andamento"
           onPress={() => setShowUpdate(true)}
+        />
+        <Button
+          title="Perfil Rápido"
+          onPress={() => setShowProfile(true)}
         />
       </View>
     );
