@@ -1,5 +1,4 @@
-// import { SectionListExample } from "@/components/SectionListExample";
-import { FlatListExample } from "@/components/FlatListExample";
+import { SectionListExample } from "@/components/SectionListExample";
 import { ProfileScreen } from "@/screens/ProfileScreen";
 import { UpdateScreen } from "@/screens/UpdateScreen";
 import { useState } from "react";
@@ -22,8 +21,7 @@ export default function Index() {
   }
 
   if (isEnabled) {
-    MyComponent = <FlatListExample />;
-    // MyComponent = <SectionListExample />;
+    MyComponent = <SectionListExample />;
   } else {
     MyComponent = (
       <View
