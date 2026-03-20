@@ -1,7 +1,7 @@
 import { SectionList, StyleSheet, Text, View } from "react-native";
 
-import { PEOPLE_LIST as DATA } from "@/data";
-import { transformListToSectionList } from "@/utils";
+import { PEOPLE_LIST as DATA } from "@/data/contacts";
+import { transformListToSectionList } from "@/utils/list-utils";
 
 const TRANSFORMED_DATA = transformListToSectionList([...DATA]);
 
