@@ -1,6 +1,5 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { StyleSheet, Text, View } from 'react-native';
-
 import { DarkTheme, LightTheme } from '@/constants/theme';
 import { type NewsItem } from '@/data/news';
 
